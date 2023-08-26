@@ -33,6 +33,7 @@ interface Launch {
   window: number;
   rocket: string;
   success: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   failures: any[]; // Define the type for failures appropriately if known
   details: string;
   crew: string[];
