@@ -7,37 +7,25 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { useQuery } from '@tanstack/react-query';
 import { getAllLaunches } from '../../api/spacex';
 
-const headers = ['Name', 'Launch Date', 'Rocket ID', 'Details'];
-
-const EnhancedTableHead = () => (
-  <TableHead>
-    <TableRow>
-      {headers.map((header) => (
-        <TableCell key={header} align="left" padding="normal">
-          {header}
-        </TableCell>
-      ))}
-    </TableRow>
-  </TableHead>
-);
-
-const EnhancedTableToolbar = () => (
-  <Toolbar
-    sx={{
-      pl: { sm: 2 },
-      pr: { xs: 1, sm: 1 },
-    }}>
-    <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-      SpaceX Launches
-    </Typography>
-  </Toolbar>
-);
+const Headers = () => {
+  const headers = ['Name', 'Launch Date', 'Rocket ID', 'Details'];
+  return (
+    <TableHead>
+      <TableRow>
+        {headers.map((header) => (
+          <TableCell key={header} align="left" padding="normal">
+            {header}
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+};
 
 const EnhancedTable = () => {
   const { data: launches } = useQuery({
@@ -77,10 +65,12 @@ const EnhancedTable = () => {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar />
+        <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
+          SpaceX Launches
+        </Typography>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
-            <EnhancedTableHead />
+            <Headers />
             <TableBody>
               {visibleRows.map((launch, index) => {
                 const isItemSelected = isSelected(launch.name);
@@ -99,9 +89,19 @@ const EnhancedTable = () => {
                     <TableCell component="th" id={labelId} scope="row">
                       {launch.name}
                     </TableCell>
-                    <TableCell align="right">{launch.date_local}</TableCell>
-                    <TableCell align="right">{launch.rocket}</TableCell>
-                    <TableCell align="right">{launch.details}</TableCell>
+                    <TableCell align="left">{launch.date_local}</TableCell>
+                    <TableCell align="left">{launch.rocket}</TableCell>
+                    <TableCell
+                      style={{
+                        whiteSpace: 'nowrap',
+                        textOverflow: 'ellipsis',
+                        width: '500px',
+                        display: 'block',
+                        overflow: 'hidden',
+                      }}
+                      align="left">
+                      {launch.details ? launch.details : 'N/A'}
+                    </TableCell>
                   </TableRow>
                 );
               })}
