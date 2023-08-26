@@ -23,16 +23,10 @@ const EnhancedTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  // Avoid a layout jump when reaching the last page with empty rows.
 
   const visibleRows = React.useMemo(() => {
     if (!launches) return [];
@@ -41,6 +35,7 @@ const EnhancedTable = () => {
 
   if (!launches) return null;
 
+  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - launches.length) : 0;
 
   return (
@@ -91,7 +86,7 @@ const EnhancedTable = () => {
           count={launches.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onPageChange={handleChangePage}
+          onPageChange={(event, newPage) => setPage(newPage)}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
