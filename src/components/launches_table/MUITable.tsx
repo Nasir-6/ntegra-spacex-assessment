@@ -10,6 +10,7 @@ import { Container } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getAllLaunches } from '../../api/spacex';
 import TableHeaders from './TableHeaders';
+import LaunchRow from './LaunchRow';
 
 const EnhancedTable = () => {
   const { data: launches } = useQuery({
@@ -45,30 +46,9 @@ const EnhancedTable = () => {
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
             <TableHeaders />
             <TableBody>
-              {visibleRows.map((launch, index) => {
-                const labelId = `enhanced-table-checkbox-${index}`;
-
-                return (
-                  <TableRow hover onClick={() => setLaunchToShowOnModal(launch)} tabIndex={-1} key={launch.name} sx={{ cursor: 'pointer' }}>
-                    <TableCell component="th" id={labelId} scope="row">
-                      {launch.name}
-                    </TableCell>
-                    <TableCell align="left">{launch.date_local}</TableCell>
-                    <TableCell align="left">{launch.rocket}</TableCell>
-                    <TableCell
-                      style={{
-                        whiteSpace: 'nowrap',
-                        textOverflow: 'ellipsis',
-                        width: '500px',
-                        display: 'block',
-                        overflow: 'hidden',
-                      }}
-                      align="left">
-                      {launch.details ? launch.details : 'N/A'}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+              {visibleRows.map((launch) => (
+                <LaunchRow launch={launch} setLaunchToShowOnModal={setLaunchToShowOnModal} />
+              ))}
               {emptyRows > 0 && (
                 <TableRow
                   style={{
