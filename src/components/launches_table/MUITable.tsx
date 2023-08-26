@@ -33,14 +33,10 @@ const EnhancedTable = () => {
     queryFn: () => getAllLaunches(),
   });
 
-  const [selected, setSelected] = React.useState<string | null>(null);
+  const [launchToShowOnModal, setLaunchToShowOnModal] = React.useState<Launch | null>(null);
+  console.log('launchToShowOnModal :>> ', launchToShowOnModal);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    if (selected === name) setSelected(null);
-    else setSelected(name);
-  };
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -50,8 +46,6 @@ const EnhancedTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const isSelected = (name: string) => selected === name;
 
   // Avoid a layout jump when reaching the last page with empty rows.
 
@@ -73,19 +67,10 @@ const EnhancedTable = () => {
             <Headers />
             <TableBody>
               {visibleRows.map((launch, index) => {
-                const isItemSelected = isSelected(launch.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, launch.name)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={launch.name}
-                    selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}>
+                  <TableRow hover onClick={() => setLaunchToShowOnModal(launch)} tabIndex={-1} key={launch.name} sx={{ cursor: 'pointer' }}>
                     <TableCell component="th" id={labelId} scope="row">
                       {launch.name}
                     </TableCell>
