@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,6 +8,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import { Container } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getAllLaunches } from '../../api/spacex';
 
@@ -63,7 +63,7 @@ const EnhancedTable = () => {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - launches.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Container>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
           SpaceX Launches
@@ -126,7 +126,7 @@ const EnhancedTable = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </Box>
+    </Container>
   );
 };
 
