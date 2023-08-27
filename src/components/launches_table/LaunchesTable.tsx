@@ -12,25 +12,6 @@ import { getAllLaunches } from '../../api/spacex';
 import TableHeaders from './TableHeaders';
 import LaunchRow from './LaunchRow';
 
-const tableColumns = [
-  {
-    header: 'Name',
-    key: 'name',
-  },
-  {
-    header: 'Launch Date',
-    key: 'date_utc',
-  },
-  {
-    header: 'Rocket ID',
-    key: 'rocket',
-  },
-  {
-    header: 'Details',
-    key: 'details',
-  },
-];
-
 const LaunchesTable = () => {
   const { data: launches } = useQuery({
     queryKey: ['launches'],
@@ -63,7 +44,7 @@ const LaunchesTable = () => {
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
-            <TableHeaders tableColumns={tableColumns} />
+            <TableHeaders />
             <TableBody>
               {visibleRows.map((launch) => (
                 <LaunchRow launch={launch} setLaunchToShowOnModal={setLaunchToShowOnModal} />
