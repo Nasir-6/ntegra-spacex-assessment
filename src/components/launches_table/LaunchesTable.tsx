@@ -43,7 +43,7 @@ const LaunchesTable = () => {
     <Container>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
-          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
+          <Table sx={{ minWidth: 750 }} size="medium">
             <TableHeaders />
             <TableBody>
               {visibleRows.map((launch) => (

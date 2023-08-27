@@ -5,7 +5,7 @@ const TableHeaders = () => {
   const headers = ['Name', 'Launch Date', 'Rocket ID', 'Details'];
   return (
     <TableHead>
-      <TableRow data-testId="header-row">
+      <TableRow data-testid="header-row">
         {headers.map((header) => (
           <TableCell key={header} align="left" padding="normal">
             {header}
