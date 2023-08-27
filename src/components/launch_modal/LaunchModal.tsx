@@ -30,7 +30,7 @@ const LaunchModal = ({ launch, setLaunchToShowOnModal }: Props) => (
         {launch.name}
       </Typography>
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        {launch.date_utc}
+        {`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}
       </Typography>
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         {`Rocket ID: ${launch.rocket}`}
@@ -39,7 +39,10 @@ const LaunchModal = ({ launch, setLaunchToShowOnModal }: Props) => (
         {`Launchpad ID: ${launch.launchpad}`}
       </Typography>
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        {launch.details}
+        Details:
+      </Typography>
+      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        {launch.details ? launch.details : 'N/A'}
       </Typography>
     </Box>
   </Modal>

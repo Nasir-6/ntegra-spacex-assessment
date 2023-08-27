@@ -11,7 +11,7 @@ const LaunchRow = ({ launch, setLaunchToShowOnModal }: Props) => (
     <TableCell component="th" scope="row">
       {launch.name}
     </TableCell>
-    <TableCell align="left">{launch.date_utc}</TableCell>
+    <TableCell align="left">{launch.date_utc.slice(0, 10)}</TableCell>
     <TableCell align="left">{launch.rocket}</TableCell>
     <TableCell
       style={{
