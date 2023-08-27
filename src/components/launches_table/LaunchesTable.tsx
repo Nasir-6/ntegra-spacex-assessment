@@ -19,7 +19,8 @@ const LaunchesTable = () => {
   });
 
   const [launchToShowOnModal, setLaunchToShowOnModal] = React.useState<Launch | null>(null);
-  console.log('launchToShowOnModal :>> ', launchToShowOnModal);
+  console.log('launchToShowOnModal :>> ');
+  console.log(JSON.stringify(launchToShowOnModal));
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);

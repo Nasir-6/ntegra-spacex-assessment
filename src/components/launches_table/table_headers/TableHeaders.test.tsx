@@ -5,7 +5,7 @@ import { Table } from '@mui/material';
 import TableHeaders from './TableHeaders';
 
 const MockTableHeaders = () => (
-  <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size="medium">
+  <Table sx={{ minWidth: 750 }} size="medium">
     <TableHeaders />
   </Table>
 );
