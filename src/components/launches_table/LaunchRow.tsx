@@ -17,8 +17,8 @@ const LaunchRow = ({ launch, setLaunchToShowOnModal }: Props) => (
       style={{
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
-        width: '500px',
-        display: 'block',
+        maxWidth: '500px',
+        // display: 'block',
         overflow: 'hidden',
       }}
       align="left">
