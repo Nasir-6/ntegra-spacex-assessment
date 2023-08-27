@@ -1,4 +1,4 @@
-import { Box, Modal, Typography } from '@mui/material';
+import { Box, Chip, Modal, Stack, Typography } from '@mui/material';
 import React from 'react';
 
 const style = {
@@ -26,9 +26,16 @@ const LaunchModal = ({ launch, setLaunchToShowOnModal }: Props) => (
     aria-labelledby="modal-modal-title"
     aria-describedby="modal-modal-description">
     <Box sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        {launch.name}
-      </Typography>
+      <Stack direction="row" spacing={1}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          {launch.name}
+        </Typography>
+        {launch.success ? (
+          <Chip label="Success" color="success" variant="outlined" />
+        ) : (
+          <Chip label="Failed" color="warning" variant="outlined" />
+        )}
+      </Stack>
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         {`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}
       </Typography>
