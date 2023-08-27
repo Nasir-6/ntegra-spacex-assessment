@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getAllLaunches } from '../../api/spacex';
-import TableHeaders from './TableHeaders';
+import TableHeaders from './table_headers/TableHeaders';
 import LaunchRow from './LaunchRow';
 
 const LaunchesTable = () => {
