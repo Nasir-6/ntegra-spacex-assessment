@@ -7,14 +7,17 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
+import { getAllLaunches } from '../../api/spacex';
 import TableHeaders from './table_headers/TableHeaders';
 import LaunchRow from './LaunchRow';
 
-type Props = {
-  launches: Launch[];
-};
+const LaunchesTable = () => {
+  const { data: launches } = useQuery({
+    queryKey: ['launches'],
+    queryFn: () => getAllLaunches(),
+  });
 
-const LaunchesTable = ({ launches }: Props) => {
   const [launchToShowOnModal, setLaunchToShowOnModal] = React.useState<Launch | null>(null);
   console.log('launchToShowOnModal :>> ', launchToShowOnModal);
 
@@ -26,10 +29,12 @@ const LaunchesTable = ({ launches }: Props) => {
     setPage(0);
   };
 
-  const visibleRows = React.useMemo(
-    () => launches.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [page, rowsPerPage, launches]
-  );
+  const visibleRows = React.useMemo(() => {
+    if (!launches) return [];
+    return launches.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  }, [page, rowsPerPage, launches]);
+
+  if (!launches) return null;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - launches.length) : 0;
