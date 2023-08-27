@@ -12,15 +12,15 @@ import { getAllLaunches } from '../../api/spacex';
 import TableHeaders from './table_headers/TableHeaders';
 import LaunchRow from './LaunchRow';
 
-const LaunchesTable = () => {
+type Props = {
+  setLaunchToShowOnModal: React.Dispatch<React.SetStateAction<Launch | null>>;
+};
+
+const LaunchesTable = ({ setLaunchToShowOnModal }: Props) => {
   const { data: launches } = useQuery({
     queryKey: ['launches'],
     queryFn: () => getAllLaunches(),
   });
-
-  const [launchToShowOnModal, setLaunchToShowOnModal] = React.useState<Launch | null>(null);
-  console.log('launchToShowOnModal :>> ');
-  console.log(JSON.stringify(launchToShowOnModal));
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
