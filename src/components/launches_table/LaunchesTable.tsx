@@ -13,7 +13,7 @@ import TableHeaders from './table_headers/TableHeaders';
 import LaunchRow from './LaunchRow';
 
 type Props = {
-  setLaunchToShowOnModal: React.Dispatch<React.SetStateAction<Launch | null>>;
+  setLaunchToShowOnModal: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 const LaunchesTable = ({ setLaunchToShowOnModal }: Props) => {
@@ -35,6 +35,7 @@ const LaunchesTable = ({ setLaunchToShowOnModal }: Props) => {
     return launches.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   }, [page, rowsPerPage, launches]);
 
+  // TODO: Add loading/empty state - Bear in mind useMemo should come before - so num of hooks is consistent!
   if (!launches) return null;
 
   // Avoid a layout jump when reaching the last page with empty rows.

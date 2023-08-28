@@ -8,7 +8,7 @@ import LaunchModal from './components/launch_modal/LaunchModal';
 const App = () => {
   const queryClient = new QueryClient();
 
-  const [launchToShowOnModal, setLaunchToShowOnModal] = React.useState<Launch | null>(null);
+  const [launchToShowOnModal, setLaunchToShowOnModal] = React.useState<string | null>(null);
   console.log('launchToShowOnModal :>> ');
   console.log(JSON.stringify(launchToShowOnModal));
   return (
@@ -16,7 +16,7 @@ const App = () => {
       <div className="App">
         <Typography variant="h1">SpaceX Landing Page</Typography>
         <LaunchesTable setLaunchToShowOnModal={setLaunchToShowOnModal} />
-        {launchToShowOnModal && <LaunchModal launch={launchToShowOnModal} setLaunchToShowOnModal={setLaunchToShowOnModal} />}
+        {launchToShowOnModal && <LaunchModal launchId={launchToShowOnModal} setLaunchToShowOnModal={setLaunchToShowOnModal} />}
       </div>
     </QueryClientProvider>
   );
