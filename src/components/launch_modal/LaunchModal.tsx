@@ -36,8 +36,7 @@ const LaunchModal = () => {
       open={true}
       onClose={() => navigate('/')}
       aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      key={id}>
+      aria-describedby="modal-modal-description">
       <Box sx={style}>
         <Stack direction="row" spacing={1}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
