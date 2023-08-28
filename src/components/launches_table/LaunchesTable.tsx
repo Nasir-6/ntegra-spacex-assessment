@@ -6,17 +6,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Container } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import { Container, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getAllLaunches } from '../../api/spacex';
 import TableHeaders from './table_headers/TableHeaders';
 import LaunchRow from './LaunchRow';
 
-type Props = {
-  setLaunchToShowOnModal: React.Dispatch<React.SetStateAction<string | null>>;
-};
-
-const LaunchesTable = ({ setLaunchToShowOnModal }: Props) => {
+const LaunchesTable = () => {
   const { data: launches } = useQuery({
     queryKey: ['launches'],
     queryFn: () => getAllLaunches(),
@@ -42,37 +39,41 @@ const LaunchesTable = ({ setLaunchToShowOnModal }: Props) => {
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - launches.length) : 0;
 
   return (
-    <Container>
-      <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableContainer>
-          <Table sx={{ minWidth: 750 }} size="medium">
-            <TableHeaders />
-            <TableBody>
-              {visibleRows.map((launch) => (
-                <LaunchRow launch={launch} setLaunchToShowOnModal={setLaunchToShowOnModal} />
-              ))}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: 53 * emptyRows,
-                  }}>
-                  <TableCell colSpan={5} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={launches.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={(event, newPage) => setPage(newPage)}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </Container>
+    <div className="App">
+      <Typography variant="h1">SpaceX Landing Page</Typography>
+      <Container>
+        <Paper sx={{ width: '100%', mb: 2 }}>
+          <TableContainer>
+            <Table sx={{ minWidth: 750 }} size="medium">
+              <TableHeaders />
+              <TableBody>
+                {visibleRows.map((launch) => (
+                  <LaunchRow launch={launch} />
+                ))}
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: 53 * emptyRows,
+                    }}>
+                    <TableCell colSpan={5} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={launches.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={(event, newPage) => setPage(newPage)}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Container>
+      <Outlet />
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import { Box, Chip, Modal, Stack, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getLaunchById } from '../../api/spacex';
 
 const style = {
@@ -15,15 +16,15 @@ const style = {
   p: 4,
 };
 
-type Props = {
-  launchId: string;
-  setLaunchToShowOnModal: React.Dispatch<React.SetStateAction<string | null>>;
-};
+const LaunchModal = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-const LaunchModal = ({ launchId, setLaunchToShowOnModal }: Props) => {
+  if (!id) return null;
+
   const { data: launch } = useQuery({
-    queryKey: ['launch', launchId],
-    queryFn: () => getLaunchById(launchId),
+    queryKey: ['launch', id],
+    queryFn: () => getLaunchById(id),
   });
 
   // TODO: Add a loading/empty state?
@@ -33,7 +34,7 @@ const LaunchModal = ({ launchId, setLaunchToShowOnModal }: Props) => {
     <Modal
       // eslint-disable-next-line react/jsx-boolean-value
       open={true}
-      onClose={() => setLaunchToShowOnModal(null)}
+      onClose={() => navigate('/')}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
       <Box sx={style}>
