@@ -48,7 +48,7 @@ const LaunchesTable = () => {
               <TableHeaders />
               <TableBody>
                 {visibleRows.map((launch) => (
-                  <LaunchRow launch={launch} />
+                  <LaunchRow launch={launch} key={launch.id} />
                 ))}
                 {emptyRows > 0 && (
                   <TableRow

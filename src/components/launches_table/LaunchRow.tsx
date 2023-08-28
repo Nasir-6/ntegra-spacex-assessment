@@ -9,7 +9,7 @@ type Props = {
 const LaunchRow = ({ launch }: Props) => {
   const navigate = useNavigate();
   return (
-    <TableRow hover onClick={() => navigate(`/${launch.id}`)} tabIndex={-1} key={launch.id} sx={{ cursor: 'pointer' }}>
+    <TableRow hover onClick={() => navigate(`/${launch.id}`)} tabIndex={-1} sx={{ cursor: 'pointer' }}>
       <TableCell component="th" scope="row">
         {launch.name}
       </TableCell>
