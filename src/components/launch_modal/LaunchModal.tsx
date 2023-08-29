@@ -9,11 +9,13 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  maxWidth: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  overflow: 'scroll',
+  maxHeight: '90%',
 };
 
 const LaunchModal = () => {
@@ -35,32 +37,27 @@ const LaunchModal = () => {
       // eslint-disable-next-line react/jsx-boolean-value
       open={true}
       onClose={() => navigate('/')}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description">
+      aria-labelledby="modal-launch-name"
+      aria-describedby="modal-launch-details">
       <Box sx={style}>
         <Stack direction="row" spacing={1}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-launch-name" variant="h6" component="h2">
             {launch.name}
           </Typography>
-          {launch.success ? (
-            <Chip label="Success" color="success" variant="outlined" />
-          ) : (
-            <Chip label="Failed" color="warning" variant="outlined" />
-          )}
+          {launch.success !== null &&
+            (launch.success ? (
+              <Chip label="Success" color="success" variant="outlined" />
+            ) : (
+              <Chip label="Failed" color="warning" variant="outlined" />
+            ))}
         </Stack>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {`Rocket ID: ${launch.rocket}`}
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {`Launchpad ID: ${launch.launchpad}`}
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography variant="body2" sx={{ mt: 1 }}>{`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}</Typography>
+        <Typography variant="body2" sx={{ mt: 1 }}>{`Rocket ID: ${launch.rocket}`}</Typography>
+        <Typography variant="body2" sx={{ mt: 1 }}>{`Launchpad ID: ${launch.launchpad}`}</Typography>
+        <Typography variant="body2" sx={{ mt: 1 }}>
           Details:
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography variant="body2" id="modal-launch-details" sx={{ mt: 2 }}>
           {launch.details ? launch.details : 'N/A'}
         </Typography>
       </Box>
