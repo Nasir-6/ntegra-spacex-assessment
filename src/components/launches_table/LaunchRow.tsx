@@ -7,9 +7,15 @@ type Props = {
 };
 
 const LaunchRow = ({ launch }: Props) => {
+  // console.log('launch :>> ', launch);
   const navigate = useNavigate();
   return (
-    <TableRow hover onClick={() => navigate(`/${launch.id}`)} tabIndex={-1} sx={{ cursor: 'pointer' }}>
+    <TableRow
+      data-testid={`launch-row-${launch.id}`}
+      hover
+      onClick={() => navigate(`/${launch.id}`)}
+      tabIndex={-1}
+      sx={{ cursor: 'pointer' }}>
       <TableCell component="th" scope="row">
         {launch.name}
       </TableCell>
