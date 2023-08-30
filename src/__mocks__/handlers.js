@@ -110,6 +110,49 @@ export const handlers = [
       ])
     )
   ),
+
+  rest.get('https://api.spacexdata.com/v4/launches/5eb87cd9ffd86e000604b32a', (req, res, ctx) =>
+    res(
+      ctx.json({
+        date_utc: '2006-03-24T22:30:00.000Z',
+        details: 'Engine failure at 33 seconds and loss of vehicle',
+        id: '5eb87cd9ffd86e000604b32a',
+        launchpad: '5e9e4502f5090995de566f86',
+        name: 'FalconSat',
+        rocket: '5e9d0d95eda69955f709d1eb',
+        success: false,
+      })
+    )
+  ),
+
+  rest.get('https://api.spacexdata.com/v4/launches/5eb87cdbffd86e000604b32d', (req, res, ctx) =>
+    res(
+      ctx.json({
+        date_utc: '2008-09-28T23:15:00.000Z',
+        details:
+          'Ratsat was carried to orbit on the first successful orbital launch of any privately funded and developed, liquid-propelled carrier rocket, the SpaceX Falcon 1',
+        id: '5eb87cdbffd86e000604b32d',
+        launchpad: '5e9e4502f5090995de566f86',
+        name: 'RatSat',
+        rocket: '5e9d0d95eda69955f709d1eb',
+        success: true,
+      })
+    )
+  ),
+
+  rest.get('https://api.spacexdata.com/v4/launches/633f72580531f07b4fdf59c6', (req, res, ctx) =>
+    res(
+      ctx.json({
+        date_utc: '2022-12-01T00:00:00.000Z',
+        details: null,
+        id: '633f72580531f07b4fdf59c6',
+        launchpad: '5e9e4501f509094ba4566f84',
+        name: 'Transporter-6',
+        rocket: '5e9d0d95eda69973a809d1ec',
+        success: null,
+      })
+    )
+  ),
 ];
 
 // 11 get alllaunches to test pages etc.!
