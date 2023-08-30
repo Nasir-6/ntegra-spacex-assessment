@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -19,17 +19,15 @@ const LaunchesTable = () => {
     queryFn: () => getAllLaunches(),
   });
 
-  // console.log('launches', launches);
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const visibleRows = React.useMemo(() => {
+  const visibleRows = useMemo(() => {
     if (!launches) return [];
     return launches.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   }, [page, rowsPerPage, launches]);
@@ -42,10 +40,10 @@ const LaunchesTable = () => {
 
   return (
     <div className="App">
-      <Typography variant="h2" component="h1" fontWeight="medium" padding={2}>
-        SpaceX Launches
-      </Typography>
       <Container>
+        <Typography variant="h2" component="h1" fontWeight="medium" padding={2}>
+          SpaceX Launches
+        </Typography>
         <Paper sx={{ width: '100%', mb: 2, backdropFilter: 'blur(30px)', backgroundColor: 'rgba(0,0,30,0.5)' }}>
           <TableContainer>
             <Table sx={{ minWidth: 750 }} size="medium">
