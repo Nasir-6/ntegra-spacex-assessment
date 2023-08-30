@@ -42,9 +42,11 @@ const LaunchesTable = () => {
 
   return (
     <div className="App">
-      <Typography variant="h1">SpaceX Landing Page</Typography>
+      <Typography variant="h2" component="h1">
+        SpaceX Landing Page
+      </Typography>
       <Container>
-        <Paper sx={{ width: '100%', mb: 2 }}>
+        <Paper sx={{ width: '100%', mb: 2, backdropFilter: 'blur(30px)', backgroundColor: 'rgba(0,0,30,0.5)' }}>
           <TableContainer>
             <Table sx={{ minWidth: 750 }} size="medium">
               <TableHeaders />
