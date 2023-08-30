@@ -15,6 +15,9 @@ const style = {
   border: '0.1px dotted #fff',
   overflow: 'scroll',
   maxHeight: '90%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 1.5,
 };
 
 const LaunchModal = () => {
@@ -53,16 +56,14 @@ const LaunchModal = () => {
         </Stack>
         {launch.success !== null &&
           (launch.success ? (
-            <Chip label="Success" color="success" variant="outlined" />
+            <Chip label="Success" color="success" variant="outlined" sx={{ maxWidth: 100 }} />
           ) : (
-            <Chip label="Failed" color="warning" variant="outlined" />
+            <Chip label="Failed" color="error" variant="outlined" sx={{ maxWidth: 100 }} />
           ))}
-        <Typography variant="body2" sx={{ mt: 1 }}>{`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}</Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>{`Rocket ID: ${launch.rocket}`}</Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>{`Launchpad ID: ${launch.launchpad}`}</Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>
-          Details:
-        </Typography>
+        <Typography variant="body2">{`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}</Typography>
+        <Typography variant="body2">{`Rocket ID: ${launch.rocket}`}</Typography>
+        <Typography variant="body2">{`Launchpad ID: ${launch.launchpad}`}</Typography>
+        <Typography variant="body2">Details:</Typography>
         <Typography variant="body2" id="modal-launch-details" sx={{ mt: 2 }}>
           {launch.details ? launch.details : 'N/A'}
         </Typography>
