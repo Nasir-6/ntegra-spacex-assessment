@@ -12,6 +12,9 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
+  typography: {
+    fontFamily: ['Oxanium', 'cursive', 'Roboto', 'Arial', 'sans-serif'].join(','),
+  },
 });
 
 const App = () => {
