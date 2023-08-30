@@ -11,10 +11,8 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   maxWidth: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
+  bgcolor: 'rgba(0,0,25,1)',
+  border: '0.1px dotted #fff',
   overflow: 'scroll',
   maxHeight: '90%',
 };
@@ -44,7 +42,7 @@ const LaunchModal = () => {
       onClose={handleOnClose}
       aria-labelledby="modal-launch-name"
       aria-describedby="modal-launch-details">
-      <Box sx={style}>
+      <Box paddingX={3} paddingY={2} sx={style}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Typography id="modal-launch-name" variant="h6" component="h2">
             {launch.name}
