@@ -19,6 +19,8 @@ const LaunchesTable = () => {
     queryFn: () => getAllLaunches(),
   });
 
+  // console.log('launches', launches);
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -32,7 +34,7 @@ const LaunchesTable = () => {
     return launches.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   }, [page, rowsPerPage, launches]);
 
-  // TODO: Add loading/empty state - Bear in mind useMemo should come before - so num of hooks is consistent!
+  // TODO: Add loading/empty/Error state - Bear in mind useMemo should come before - so num of hooks is consistent!
   if (!launches) return null;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -52,6 +54,7 @@ const LaunchesTable = () => {
                 ))}
                 {emptyRows > 0 && (
                   <TableRow
+                    data-testid="empty-rows"
                     style={{
                       height: 53 * emptyRows,
                     }}>
@@ -62,6 +65,7 @@ const LaunchesTable = () => {
             </Table>
           </TableContainer>
           <TablePagination
+            data-testid="pagination"
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={launches.length}
