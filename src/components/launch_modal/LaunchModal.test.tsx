@@ -1,7 +1,8 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import userEvent from '@testing-library/user-event';
 import LaunchModal from './LaunchModal';
 
 const MockedLaunchModal = ({ id }: { id: string }) => {
@@ -73,11 +74,15 @@ describe('LaunchModal rendering', () => {
 
   it('should remove modal details when overlay is closed', async () => {
     render(<MockedLaunchModal id="633f72580531f07b4fdf59c6" />);
-    expect(await screen.findByText('Transporter-6')).toBeInTheDocument();
-    fireEvent.keyDown(screen.getByText('Transporter-6'), {
-      key: 'Escape',
-      code: 'Escape',
-    });
+
+    expect(await screen.findByRole('presentation')).toBeInTheDocument();
+    const modal = screen.getByRole('presentation');
+    expect(screen.getByText('Transporter-6')).toBeInTheDocument();
+
+    const closeBtn = screen.getByRole('button', { name: 'modal-close-btn' });
+    userEvent.click(closeBtn);
+
+    expect(modal).not.toBeInTheDocument();
     expect(screen.queryByText('Transporter-6')).not.toBeInTheDocument();
   });
 

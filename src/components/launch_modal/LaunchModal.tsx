@@ -49,7 +49,7 @@ const LaunchModal = () => {
           <Typography id="modal-launch-name" variant="h6" component="h2">
             {launch.name}
           </Typography>
-          <IconButton onClick={handleOnClose}>
+          <IconButton aria-label="modal-close-btn" onClick={handleOnClose}>
             <CloseIcon />
           </IconButton>
         </Stack>
