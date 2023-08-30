@@ -41,8 +41,8 @@ const LaunchesTable = () => {
   return (
     <div className="App">
       <Container>
-        <Typography variant="h2" component="h1" fontWeight="medium" padding={2}>
-          SpaceX Launches
+        <Typography variant="h2" component="h1" fontWeight="medium" fontFamily="spaceXFont" padding={2}>
+          SpaceX LAunches
         </Typography>
         <Paper sx={{ width: '100%', mb: 2, backdropFilter: 'blur(30px)', backgroundColor: 'rgba(0,0,30,0.5)' }}>
           <TableContainer>

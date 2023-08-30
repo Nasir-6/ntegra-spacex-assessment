@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+@font-face {
+  font-family: spaceXFont;
+  src: url(../public/SpaceX.ttf);
+}
+
+h1 {
+  font-family: spaceXFont;
+}
