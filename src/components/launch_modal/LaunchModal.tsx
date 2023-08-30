@@ -60,13 +60,30 @@ const LaunchModal = () => {
           ) : (
             <Chip label="Failed" color="error" variant="outlined" sx={{ maxWidth: 100 }} />
           ))}
-        <Typography variant="body2">{`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}</Typography>
-        <Typography variant="body2">{`Rocket ID: ${launch.rocket}`}</Typography>
-        <Typography variant="body2">{`Launchpad ID: ${launch.launchpad}`}</Typography>
-        <Typography variant="body2">Details:</Typography>
-        <Typography variant="body2" id="modal-launch-details" sx={{ mt: 2 }}>
-          {launch.details ? launch.details : 'N/A'}
+
+        <Stack direction="row" flexWrap="wrap">
+          <Typography variant="body2" paddingRight={0.5}>
+            <strong>Launch Date (UTC):</strong>
+          </Typography>
+          <Typography variant="body2">{launch.date_utc.slice(0, 10)}</Typography>
+        </Stack>
+
+        <Typography variant="body2">
+          <strong>Rocket ID: </strong>
+          {launch.rocket}
         </Typography>
+
+        <Typography variant="body2">
+          <strong>Launchpad ID: </strong>
+          {launch.launchpad}
+        </Typography>
+
+        <Stack direction="column">
+          <Typography variant="body2" paddingRight={0.5}>
+            <strong>Details:</strong>
+          </Typography>
+          <Typography variant="body2">{launch.details ? launch.details : 'N/A'}</Typography>
+        </Stack>
       </Box>
     </Modal>
   );
