@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 // eslint-disable-next-line import/prefer-default-export
 export const handlers = [
-  // Handles a GET /user request
+  // Handles a GET allLaunches request
   rest.get('https://api.spacexdata.com/v4/launches', (req, res, ctx) =>
     res(
       ctx.json([
@@ -111,6 +111,7 @@ export const handlers = [
     )
   ),
 
+  // The ones below handle some of the GET LaunchById requests which are mocked for testing
   rest.get('https://api.spacexdata.com/v4/launches/5eb87cd9ffd86e000604b32a', (req, res, ctx) =>
     res(
       ctx.json({

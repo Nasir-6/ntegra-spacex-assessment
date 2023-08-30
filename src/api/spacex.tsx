@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { launchSchema, launchArrSchema, Launch } from '../types/spacexapi';
 
-// eslint-disable-next-line import/prefer-default-export
 export const getAllLaunches = async (): Promise<Launch[]> => {
   const res = await axios.get<Launch[]>('https://api.spacexdata.com/v4/launches');
   const allLaunches = launchArrSchema.parse(res.data);
