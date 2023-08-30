@@ -42,7 +42,7 @@ const LaunchesTable = () => {
 
   return (
     <div className="App">
-      <Typography variant="h2" component="h1">
+      <Typography variant="h2" component="h1" fontWeight="medium" padding={2}>
         SpaceX Launches
       </Typography>
       <Container>
