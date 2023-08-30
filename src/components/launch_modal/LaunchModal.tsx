@@ -24,13 +24,13 @@ const LaunchModal = () => {
 
   if (!id) return null;
 
-  const { data: launch } = useQuery({
+  const { data: launch, isError } = useQuery({
     queryKey: ['launch', id],
     queryFn: () => getLaunchById(id),
   });
 
   // TODO: Add a loading/empty state?
-  if (!launch) return null;
+  if (!launch || isError) return null;
 
   return (
     <Modal
