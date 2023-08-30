@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { launchSchema, launchArrSchema } from '../types/spacexapi';
+import { launchSchema, launchArrSchema, Launch } from '../types/spacexapi';
 
 // eslint-disable-next-line import/prefer-default-export
 export const getAllLaunches = async (): Promise<Launch[]> => {

@@ -4,6 +4,7 @@ import { debug } from 'console';
 import { Table, TableBody } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import LaunchRow from './LaunchRow';
+import { Launch } from '../../../types/spacexapi';
 
 const launchId = '5eb87cd9ffd86e000604b32a';
 const rocketId = '5e9d0d95eda69955f709d1eb';

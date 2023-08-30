@@ -5,7 +5,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getLaunchById } from '../../api/spacex';
 
-const style = {
+const modalStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -45,7 +45,7 @@ const LaunchModal = () => {
       onClose={handleOnClose}
       aria-labelledby="modal-launch-name"
       aria-describedby="modal-launch-details">
-      <Box paddingX={3} paddingY={2} sx={style}>
+      <Box paddingX={3} paddingY={2} sx={modalStyle}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Typography id="modal-launch-name" variant="h6" component="h2">
             {launch.name}
@@ -54,6 +54,7 @@ const LaunchModal = () => {
             <CloseIcon />
           </IconButton>
         </Stack>
+
         {launch.success !== null &&
           (launch.success ? (
             <Chip label="Success" color="success" variant="outlined" sx={{ maxWidth: 100 }} />
@@ -62,7 +63,7 @@ const LaunchModal = () => {
           ))}
 
         <Stack direction="row" flexWrap="wrap">
-          <Typography variant="body2" paddingRight={0.5}>
+          <Typography variant="body2" paddingRight={0.5} aria-label="Date">
             <strong>Launch Date (UTC):</strong>
           </Typography>
           <Typography variant="body2">{launch.date_utc.slice(0, 10)}</Typography>
