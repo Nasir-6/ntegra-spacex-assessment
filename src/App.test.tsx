@@ -10,6 +10,11 @@ const MockedAppRoute = ({ id }: { id: string }) => (
   </MemoryRouter>
 );
 
+const closeModal = () => {
+  const closeBtn = screen.getByRole('button', { name: 'modal-close-btn' });
+  userEvent.click(closeBtn);
+};
+
 describe('renders App correctly', () => {
   it('renders initial App page with 5 launch rows and no modals', async () => {
     render(<MockedAppRoute id="" />);
@@ -28,17 +33,14 @@ describe('renders App correctly', () => {
     render(<MockedAppRoute id="" />);
     expect(await screen.findByRole('table')).toBeInTheDocument();
     const table = screen.getByRole('table');
-
     expect(screen.queryByRole('presentation')).not.toBeInTheDocument();
-
     const falconSatlaunchRow = screen.getByTestId(/launch-row-5eb87cd9ffd86e000604b32a/i);
-    userEvent.click(falconSatlaunchRow);
 
+    userEvent.click(falconSatlaunchRow);
     expect(await screen.findByRole('presentation')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'FalconSat' }));
     expect(screen.getByText(/Launchpad ID:/i)).toBeInTheDocument();
     expect(screen.getByText(/5e9e4502f5090995de566f86/i)).toBeInTheDocument();
-
     expect(table).toBeInTheDocument();
   });
 
@@ -57,19 +59,16 @@ describe('Modal Closing functionality within App', () => {
     render(<MockedAppRoute id="" />);
     expect(await screen.findByRole('table')).toBeInTheDocument();
     const table = screen.getByRole('table');
-
     expect(screen.queryByRole('presentation')).not.toBeInTheDocument();
 
     const falconSatlaunchRow = screen.getByTestId(/launch-row-5eb87cd9ffd86e000604b32a/i);
     userEvent.click(falconSatlaunchRow);
-
     expect(await screen.findByRole('presentation')).toBeInTheDocument();
     const modal = screen.getByRole('presentation');
     expect(screen.getByRole('heading', { name: 'FalconSat' }));
     expect(table).toBeInTheDocument();
-    const closeBtn = screen.getByRole('button', { name: 'modal-close-btn' });
-    userEvent.click(closeBtn);
 
+    closeModal();
     expect(modal).not.toBeInTheDocument();
     expect(table).toBeInTheDocument();
   });
@@ -84,9 +83,7 @@ describe('Modal Closing functionality within App', () => {
     expect(screen.getByRole('heading', { name: 'FalconSat' }));
     expect(screen.getByText(/Launchpad ID:/i)).toBeInTheDocument();
 
-    const closeBtn = screen.getByRole('button', { name: 'modal-close-btn' });
-    userEvent.click(closeBtn);
-
+    closeModal();
     expect(modal).not.toBeInTheDocument();
   });
 });

@@ -53,7 +53,6 @@ describe('LaunchTable pagination', () => {
     render(<LaunchesTable />, { wrapper });
     expect(await screen.findByRole('table')).toBeInTheDocument();
     clickNextPageBtn();
-    // No NEED TO USE wait for elementToBeRemoved or act - https://github.com/testing-library/user-event/discussions/906 - use override in package.json to use same @testing-library/dom version!
     expect(screen.getByText(/CRS-26/i)).toBeInTheDocument(); // 6th row
     expect(screen.queryByText(/FalconSat/i)).toBeNull();
     expectNumOfLaunchRowsToBe(5);
