@@ -1,4 +1,5 @@
-import { Box, Chip, Modal, Stack, Typography } from '@mui/material';
+import { Box, Chip, IconButton, Modal, Stack, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -32,25 +33,32 @@ const LaunchModal = () => {
   // TODO: Add a loading/empty state?
   if (!launch || isError) return null;
 
+  const handleOnClose = () => {
+    navigate('/');
+  };
+
   return (
     <Modal
       // eslint-disable-next-line react/jsx-boolean-value
       open={true}
-      onClose={() => navigate('/')}
+      onClose={handleOnClose}
       aria-labelledby="modal-launch-name"
       aria-describedby="modal-launch-details">
       <Box sx={style}>
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Typography id="modal-launch-name" variant="h6" component="h2">
             {launch.name}
           </Typography>
-          {launch.success !== null &&
-            (launch.success ? (
-              <Chip label="Success" color="success" variant="outlined" />
-            ) : (
-              <Chip label="Failed" color="warning" variant="outlined" />
-            ))}
+          <IconButton onClick={handleOnClose}>
+            <CloseIcon />
+          </IconButton>
         </Stack>
+        {launch.success !== null &&
+          (launch.success ? (
+            <Chip label="Success" color="success" variant="outlined" />
+          ) : (
+            <Chip label="Failed" color="warning" variant="outlined" />
+          ))}
         <Typography variant="body2" sx={{ mt: 1 }}>{`Launch Date (UTC): ${launch.date_utc.slice(0, 10)}`}</Typography>
         <Typography variant="body2" sx={{ mt: 1 }}>{`Rocket ID: ${launch.rocket}`}</Typography>
         <Typography variant="body2" sx={{ mt: 1 }}>{`Launchpad ID: ${launch.launchpad}`}</Typography>
