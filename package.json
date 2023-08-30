@@ -28,6 +28,11 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
   "overrides": {
     "@testing-library/dom": "9.3.1"
   },
