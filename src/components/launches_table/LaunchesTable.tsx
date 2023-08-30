@@ -43,7 +43,7 @@ const LaunchesTable = () => {
   return (
     <div className="App">
       <Typography variant="h2" component="h1">
-        SpaceX Landing Page
+        SpaceX Launches
       </Typography>
       <Container>
         <Paper sx={{ width: '100%', mb: 2, backdropFilter: 'blur(30px)', backgroundColor: 'rgba(0,0,30,0.5)' }}>
