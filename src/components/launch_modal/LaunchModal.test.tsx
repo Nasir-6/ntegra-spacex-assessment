@@ -2,9 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import userEvent from '@testing-library/user-event';
 import LaunchModal from './LaunchModal';
-import userEvent from '@testing-library/user-event';
 
 const MockedLaunchModal = ({ id }: { id: string }) => {
   const queryClient = new QueryClient();
