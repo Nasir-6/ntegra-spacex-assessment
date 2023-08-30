@@ -11,7 +11,7 @@ import { Container, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getAllLaunches } from '../../api/spacex';
 import TableHeaders from './table_headers/TableHeaders';
-import LaunchRow from './LaunchRow';
+import LaunchRow from './launch_row/LaunchRow';
 
 const LaunchesTable = () => {
   const { data: launches } = useQuery({
