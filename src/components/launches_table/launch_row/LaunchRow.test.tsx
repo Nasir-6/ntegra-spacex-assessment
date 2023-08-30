@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { debug } from 'console';
 import { Table, TableBody } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
 import LaunchRow from './LaunchRow';
@@ -31,9 +30,7 @@ describe('LaunchRow rendering', () => {
       id: launchId,
     };
     render(mockLaunchRow(mockLaunch));
-    //   const launchRow = screen.getByTestId(`launch-row-${launchId}`);
     const launchRow = screen.getByRole('row');
-    debug();
     expect(launchRow.childElementCount).toBe(4);
     expect(screen.getByText(/FalconSat/i)).toBeInTheDocument();
     expect(screen.getByText(/2006-03-24/i)).toBeInTheDocument();
@@ -52,13 +49,8 @@ describe('LaunchRow rendering', () => {
       id: launchId,
     };
     render(mockLaunchRow(mockLaunch));
-    const launchRow = screen.getByRole('row');
-    debug();
-    expect(launchRow.childElementCount).toBe(4);
     expect(screen.getByText(/FalconSat/i)).toBeInTheDocument();
-    expect(screen.getByText(/2006-03-24/i)).toBeInTheDocument();
     expect(screen.getByText('N/A')).toBeInTheDocument();
-    expect(screen.getByText(rocketId)).toBeInTheDocument();
   });
 
   it('should render the ellipses for details if details is too long', () => {
@@ -72,15 +64,10 @@ describe('LaunchRow rendering', () => {
       id: launchId,
     };
     render(mockLaunchRow(mockLaunch));
-    const launchRow = screen.getByRole('row');
-    debug();
-    expect(launchRow.childElementCount).toBe(4);
     expect(screen.getByText(/FalconSat/i)).toBeInTheDocument();
-    expect(screen.getByText(/2006-03-24/i)).toBeInTheDocument();
     expect(screen.queryByText(/Engine failure at 33 seconds and loss of vehicle/i)).toHaveStyle(`whiteSpace: nowrap;
         text-overflow: ellipsis;
         max-width: 500px;
         overflow: hidden;`);
-    expect(screen.getByText(rocketId)).toBeInTheDocument();
   });
 });
