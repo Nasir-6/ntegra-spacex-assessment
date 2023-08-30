@@ -50,9 +50,9 @@ describe('renders App correctly', () => {
     expect(screen.getByText(/Launchpad ID:/i)).toBeInTheDocument();
     expect(screen.getByText(/5e9e4502f5090995de566f86/i)).toBeInTheDocument();
   });
+});
 
-  // TODO: Figure out how to test clicking out of modal - waitForElementToBeRemoved times out
-  // OR TODO: Add a close btn
+describe('Modal Closing functionality within App', () => {
   it('will open the modal by clicking the FalconSat row and close modal using the modal-close-btn ', async () => {
     render(<MockedAppRoute id="" />);
     expect(await screen.findByRole('table')).toBeInTheDocument();
