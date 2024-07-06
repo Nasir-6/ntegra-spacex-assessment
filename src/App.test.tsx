@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 const MockedAppRoute = ({ id }: { id: string }) => (
-  <MemoryRouter initialEntries={[`/${id}`]}>
+  <MemoryRouter initialEntries={[`/ntegra-spacex-assessment/${id}`]}>
     <App />
   </MemoryRouter>
 );

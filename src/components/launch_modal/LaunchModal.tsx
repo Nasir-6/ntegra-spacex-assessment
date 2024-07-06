@@ -35,7 +35,7 @@ const LaunchModal = () => {
   if (!launch || isError) return null;
 
   const handleOnClose = () => {
-    navigate('/');
+    navigate('/ntegra-spacex-assessment');
   };
 
   return (

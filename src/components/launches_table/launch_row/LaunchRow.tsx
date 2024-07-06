@@ -14,7 +14,7 @@ const LaunchRow = ({ launch }: Props) => {
     <TableRow
       data-testid={`launch-row-${launch.id}`}
       hover
-      onClick={() => navigate(`/${launch.id}`)}
+      onClick={() => navigate(`/ntegra-spacex-assessment/${launch.id}`)}
       tabIndex={-1}
       sx={{ cursor: 'pointer' }}>
       <TableCell component="th">{launch.name}</TableCell>

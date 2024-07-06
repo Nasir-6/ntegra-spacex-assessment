@@ -24,8 +24,8 @@ const App = () => {
       <CssBaseline />
       <QueryClientProvider client={queryClient}>
         <Routes>
-          <Route path="/" element={<LaunchesTable />}>
-            <Route path="/:id" element={<LaunchModal />} />
+          <Route path="/ntegra-spacex-assessment" element={<LaunchesTable />}>
+            <Route path="/ntegra-spacex-assessment/:id" element={<LaunchModal />} />
           </Route>
         </Routes>
       </QueryClientProvider>
