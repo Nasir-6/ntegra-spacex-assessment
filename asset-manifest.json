@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ntegra-spacex-assessment/static/css/main.83bfe131.css",
-    "main.js": "/ntegra-spacex-assessment/static/js/main.4098de44.js",
+    "main.js": "/ntegra-spacex-assessment/static/js/main.a54267c0.js",
     "static/media/spacex-bg.jpeg": "/ntegra-spacex-assessment/static/media/spacex-bg.4ee1a3931994fa1dd35c.jpeg",
     "index.html": "/ntegra-spacex-assessment/index.html",
     "main.83bfe131.css.map": "/ntegra-spacex-assessment/static/css/main.83bfe131.css.map",
-    "main.4098de44.js.map": "/ntegra-spacex-assessment/static/js/main.4098de44.js.map"
+    "main.a54267c0.js.map": "/ntegra-spacex-assessment/static/js/main.a54267c0.js.map"
   },
   "entrypoints": [
     "static/css/main.83bfe131.css",
-    "static/js/main.4098de44.js"
+    "static/js/main.a54267c0.js"
   ]
 }
