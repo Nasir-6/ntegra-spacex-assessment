@@ -13,7 +13,7 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
   typography: {
-    fontFamily: ['Oxanium', 'cursive', 'Roboto', 'Arial', 'sans-serif'].join(','),
+    fontFamily: ['Oxanium', 'Roboto', 'Arial', 'sans-serif'].join(','),
   },
 });
 
