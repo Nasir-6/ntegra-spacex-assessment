@@ -46,7 +46,7 @@ describe('renders App correctly', () => {
 
   it('renders FalconSat Modal with table in the back if FalconSat id is in the URL params', async () => {
     render(<MockedAppRoute id="5eb87cd9ffd86e000604b32a" />);
-    expect(await screen.findByRole('table')).toBeInTheDocument();
+    await screen.findByTestId(`rockets-table`);
     expect(await screen.findByRole('presentation')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'FalconSat' }));
     expect(screen.getByText(/Launchpad ID:/i)).toBeInTheDocument();
@@ -57,13 +57,13 @@ describe('renders App correctly', () => {
 describe('Modal Closing functionality within App', () => {
   it('will open the modal by clicking the FalconSat row and close modal using the modal-close-btn ', async () => {
     render(<MockedAppRoute id="" />);
-    expect(await screen.findByRole('table')).toBeInTheDocument();
+    await screen.findByRole('table');
     const table = screen.getByRole('table');
     expect(screen.queryByRole('presentation')).not.toBeInTheDocument();
 
     const falconSatlaunchRow = screen.getByTestId(/launch-row-5eb87cd9ffd86e000604b32a/i);
     userEvent.click(falconSatlaunchRow);
-    expect(await screen.findByRole('presentation')).toBeInTheDocument();
+    await screen.findByRole('presentation');
     const modal = screen.getByRole('presentation');
     expect(screen.getByRole('heading', { name: 'FalconSat' }));
     expect(table).toBeInTheDocument();
@@ -75,10 +75,11 @@ describe('Modal Closing functionality within App', () => {
 
   it('renders FalconSat Modal via the url and closes the modal via modal-close-btn', async () => {
     render(<MockedAppRoute id="5eb87cd9ffd86e000604b32a" />);
-    expect(await screen.findByRole('table')).toBeInTheDocument();
-    const table = screen.getByRole('table');
+    await screen.findByTestId(`header-row`);
+    await screen.findByTestId(`rockets-table`);
+    const table = screen.getByTestId('rockets-table');
     expect(table).toBeInTheDocument();
-    expect(await screen.findByRole('presentation')).toBeInTheDocument();
+    await screen.findByRole('presentation');
     const modal = screen.getByRole('presentation');
     expect(screen.getByRole('heading', { name: 'FalconSat' }));
     expect(screen.getByText(/Launchpad ID:/i)).toBeInTheDocument();
